@@ -34,7 +34,17 @@
 
 // NOTE: For best readability, view with a fixed-width font and tabs equal to 4-chars
 
-(function ($) {
+(function (factory) {
+    if (typeof define === 'function' && define.amd) {
+        // AMD. Register as an anonymous module.
+        define(['jquery'], factory);
+    } else if(typeof module !== 'undefined' && module.exports) {
+        module.exports = factory(require('jquery'));
+    } else {
+        // Browser globals
+        factory(jQuery);
+    }
+}(function ($) {
 // alias Math methods - used a lot!
     var min = Math.min, max = Math.max, round = Math.floor, isStr = function (v) {
         return $.type(v) === "string";
@@ -5443,9 +5453,7 @@
             return Instance; // return the Instance object
 
     };
-}
-
-)(jQuery);
+//})(jQuery);
 
 
 
@@ -5524,8 +5532,7 @@ jQuery.cookie = function (name, value, options) {
  *
  * @see: http://groups.google.com/group/jquery-ui-layout
  */
-;
-(function ($) {
+//;(function ($) {
 
     if (!$.layout)
         return;
@@ -6014,7 +6021,7 @@ jQuery.cookie = function (name, value, options) {
     $.layout.onCreate.push($.layout.state._create);
     $.layout.onUnload.push($.layout.state._unload);
 
-})(jQuery);
+//})(jQuery);
 
 
 
@@ -6035,8 +6042,7 @@ jQuery.cookie = function (name, value, options) {
  * Docs: [ to come ]
  * Tips: [ to come ]
  */
-;
-(function ($) {
+//;(function ($) {
 
     if (!$.layout)
         return;
@@ -6309,7 +6315,7 @@ jQuery.cookie = function (name, value, options) {
     $.layout.onLoad.push($.layout.buttons._load);
 //$.layout.onUnload.push( $.layout.buttons._unload );
 
-})(jQuery);
+//})(jQuery);
 
 
 
@@ -6331,7 +6337,7 @@ jQuery.cookie = function (name, value, options) {
  * TODO: Extend logic to handle other problematic zooming in browsers
  * TODO: Add hotkey/mousewheel bindings to _instantly_ respond to these zoom event
  */
-(function ($) {
+//(function ($) {
 
 // tell Layout that the plugin is available
     $.layout.plugins.browserZoom = true;
@@ -6407,7 +6413,7 @@ jQuery.cookie = function (name, value, options) {
     $.layout.onReady.push($.layout.browserZoom._init);
 
 
-})(jQuery);
+//})(jQuery);
 
 
 
@@ -6427,8 +6433,7 @@ jQuery.cookie = function (name, value, options) {
  * Author:  Kevin Dalman (kevin@jquery-dev.com)
  * @preserve jquery.layout.slideOffscreen-1.1.js
  */
-;
-(function ($) {
+//;(function ($) {
 
 // Add a new "slideOffscreen" effect
     if ($.effects) {
@@ -6512,7 +6517,7 @@ jQuery.cookie = function (name, value, options) {
 
     }
 
-})(jQuery);
+//})(jQuery);
 
 
 
@@ -6534,8 +6539,7 @@ jQuery.cookie = function (name, value, options) {
  * Version: 1.2 - 2013-01-12
  * Author:  Kevin Dalman (kevin@jquery-dev.com)
  */
-;
-(function ($) {
+//;(function ($) {
     var _ = $.layout;
 
 // make sure the callbacks branch exists
@@ -6554,7 +6558,7 @@ jQuery.cookie = function (name, value, options) {
                 $E.accordion("refresh");
         });
     };
-})(jQuery);
+//})(jQuery);
 
 
 
@@ -6581,8 +6585,7 @@ jQuery.cookie = function (name, value, options) {
  * Author:  Robert Brower (atomofthought@yahoo.com)
  * @preserve jquery.layout.resizeDataTables-1.0.js
  */
-;
-(function ($) {
+//;(function ($) {
     $.layout.callbacks.resizeDataTables = function (x, ui) {
         // may be called EITHER from layout-pane.onresize OR tabs.show
         var oPane = ui.jquery ? ui[0] : ui.panel;
@@ -6596,7 +6599,7 @@ jQuery.cookie = function (name, value, options) {
             }
         });
     };
-})(jQuery);
+//})(jQuery);
 
 
 
@@ -6631,8 +6634,7 @@ jQuery.cookie = function (name, value, options) {
 
 
 
-;
-(function ($) {
+//;(function ($) {
     var _ = $.layout;
 
 // make sure the callbacks branch exists
@@ -6644,7 +6646,7 @@ jQuery.cookie = function (name, value, options) {
         // may be called EITHER from layout-pane.onresize OR tabs.show/activate
         var $P = ui.jquery ? ui : $(ui.newPanel || ui.panel);
         // find all VISIBLE layouts inside this pane/panel and resize them
-        $P.filter(":visible").find(".ui-layout-container:visible").andSelf().each(function () {
+        $P.filter(":visible").find(".ui-layout-container:visible").addBack().each(function () {
             var layout = $(this).data("layout");
             if (layout) {
                 layout.options.resizeWithWindow = false; // set option just in case not already set
@@ -6652,13 +6654,8 @@ jQuery.cookie = function (name, value, options) {
             }
         });
     };
-})
-        ;
-(jQuery);
-
-
-
-
-
-
-
+//})
+//        ;
+//(jQuery);
+    
+}));
