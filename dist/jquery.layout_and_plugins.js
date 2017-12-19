@@ -5469,6 +5469,7 @@
  * http://www.gnu.org/licenses/gpl.html
  *
  */
+ if (jQuery === undefined) jQuery = $;
 jQuery.cookie = function (name, value, options) {
     if (typeof value != 'undefined') { // name and value given, set cookie
         options = options || {};
