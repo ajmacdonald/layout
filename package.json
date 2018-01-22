@@ -30,7 +30,7 @@
 	"bugs": "https://groups.google.com/forum/#!forum/jquery-ui-layout",
 	"download": "https://github.com/allpro/layout/archive/master.zip",
 	"dependencies": {
-		"jquery": ">=1.5"
+		"jquery": "3.2.1"
 	},
 	"main": "dist/jquery.layout_and_plugins.js"
 }
